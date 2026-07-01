@@ -1,0 +1,11 @@
+[configuration]
+polarity = NPN
+maxpower = 300
+maxvoltage = 30
+horizscale = 5
+vertscale = 5
+gateoffset = 4
+gatestep = 1
+stepnumber = 5
+slowsweep = False
+

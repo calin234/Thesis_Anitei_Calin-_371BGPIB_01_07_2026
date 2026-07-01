@@ -1,0 +1,10 @@
+[configuration]
+maxpower = 300
+maxvoltage = 10
+horizscale = 0.1
+vertscale = 0.5
+gateoffset = 2
+gatestep = 0.2
+stepnumber = 0
+slowsweep = False
+
