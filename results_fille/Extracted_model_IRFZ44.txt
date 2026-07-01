@@ -1,0 +1,72 @@
+"C:\Users\Sep\Documents\Didactic\Licenta\2026\Anitei Calin Gabriel\Soft\.venv\Scripts\python.exe" "C:\Users\Sep\Documents\Didactic\Licenta\2026\Anitei Calin Gabriel\Soft\mosfet_spice_extractor4.py" 
+====================================================================
+  MOSFET SPICE Level 1 Parameter Extractor  –  IRFZ44
+====================================================================
+
+  Reading 'csv_irfz44_off2_5_5_step5.csv' …
+  V_GS values detected: ['2.0V', '2.5V', '3.0V', '3.5V', '4.0V', '4.5V']
+  Data summary:
+    V_GS=2.0 V :   42 pts  |  V_DS ∈ [0.00, 31.15] V  |  I_D ∈ [0.0500, 0.1500] A
+    V_GS=2.5 V :   42 pts  |  V_DS ∈ [0.00, 28.85] V  |  I_D ∈ [0.0500, 3.1000] A
+    V_GS=3.0 V :   42 pts  |  V_DS ∈ [0.00, 21.40] V  |  I_D ∈ [0.0500, 12.6500] A
+    V_GS=3.5 V :   42 pts  |  V_DS ∈ [0.00, 11.90] V  |  I_D ∈ [0.0500, 24.8000] A
+    V_GS=4.0 V :   42 pts  |  V_DS ∈ [0.00, 2.25] V  |  I_D ∈ [0.0500, 37.1000] A
+    V_GS=4.5 V :   42 pts  |  V_DS ∈ [0.00, 1.80] V  |  I_D ∈ [0.0500, 37.6500] A
+
+─── Saturation-region linear fits ──────────────────────────────────
+  V_GS=2.0 V :  I₀=0.1500 A  |  λ=0.00000 V⁻¹  |  R²=0.0000  |  n=13
+  V_GS=2.5 V :  I₀=2.5949 A  |  λ=0.00558 V⁻¹  |  R²=0.9318  |  n=38
+  V_GS=3.0 V :  I₀=11.4521 A  |  λ=0.00476 V⁻¹  |  R²=0.9787  |  n=29
+  V_GS=3.5 V :  I₀=23.3012 A  |  λ=0.00687 V⁻¹  |  R²=0.4608  |  n=18
+  V_GS=4.0 V :  I₀=17.6836 A  |  λ=0.50053 V⁻¹  |  R²=0.9521  |  n=7
+  V_GS=4.5 V :  I₀=8.5500 A  |  λ=1.87694 V⁻¹  |  R²=0.9144  |  n=7
+
+════════════════════════════════════════════════════════════════════
+  ⚠  DATA QUALITY WARNINGS
+════════════════════════════════════════════════════════════════════
+  ⚠  Curves with λ > 0.3 V⁻¹ (unrealistically high): V_GS = ['4.0V', '4.5V']
+  ⚠  Distorted curves excluded from VTO / K fitting — repeat those sweeps with short pulses (≤ 20 µs) to fix.
+
+════════════════════════════════════════════════════════════════════
+  EXTRACTED PARAMETERS
+════════════════════════════════════════════════════════════════════
+  VTO        =  1.9044      V   [multi-point √(I₀) vs V_GS regression  (R² = 0.9956,  n = 4 curves)]
+  KP_eff (β) =  18.223165 A/V²  (= 2K, for W=L=1 on the instance)
+  K  (= β/2) =  9.111582 A/V²
+  LAMBDA     =  0.004303 V⁻¹  (avg over V_GS = ['2.0V', '2.5V', '3.0V', '3.5V'])
+
+  Saturation intercepts I₀ per curve:
+    V_GS=2.0 V :  I₀ = 0.1500 A  |  λ = 0.00000 V⁻¹  |  R² = 0.0000  ✓ clean
+    V_GS=2.5 V :  I₀ = 2.5949 A  |  λ = 0.00558 V⁻¹  |  R² = 0.9318  ✓ clean
+    V_GS=3.0 V :  I₀ = 11.4521 A  |  λ = 0.00476 V⁻¹  |  R² = 0.9787  ✓ clean
+    V_GS=3.5 V :  I₀ = 23.3012 A  |  λ = 0.00687 V⁻¹  |  R² = 0.4608  ✓ clean
+    V_GS=4.0 V :  I₀ = 17.6836 A  |  λ = 0.50053 V⁻¹  |  R² = 0.9521  ✗ distorted — excluded
+    V_GS=4.5 V :  I₀ = 8.5500 A  |  λ = 1.87694 V⁻¹  |  R² = 0.9144  ✗ distorted — excluded
+
+  RDS(on) ≈ 35.71 mΩ  (V_GS=4.5V, deep-linear region)
+════════════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════════════
+  SPICE LEVEL 1 MODEL CARD
+════════════════════════════════════════════════════════════════════
+  * Device  : IRFZ44  (N-channel enhancement MOSFET)
+  * Curves used for extraction: V_GS = ['2.0V', '2.5V', '3.0V', '3.5V']
+  * Excluded (self-heating)   : V_GS = ['4.0V', '4.5V']
+  *
+  * KP is EFFECTIVE = KP_intrinsic × (W/L).  Always use W=1 L=1 on each instance.
+  * Capacitances (CGSO, CGDO, CJ …) are NOT extracted here.
+
+  .model IRFZ44 NMOS (Level=1
+  +  VTO    = 1.9044      $ threshold voltage  [V]
+  +  KP     = 18.223165  $ eff. transconductance [A/V²]  (W=L=1)
+  +  LAMBDA = 0.004303  $ channel-length modulation  [V⁻¹]
+  +  RD     = 0.01786    $ ≈ RDS(on)/2  [Ω]
+  +  RS     = 0.01786    $ ≈ RDS(on)/2  [Ω]
+  +  )
+
+  * M1  Drain  Gate  Source  Bulk  IRFZ44  W=1  L=1
+════════════════════════════════════════════════════════════════════
+
+  Plot saved  →  IRFZ44_SPICE_extraction.png
+
+Process finished with exit code 0

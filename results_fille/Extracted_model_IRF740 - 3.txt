@@ -1,0 +1,72 @@
+
+====================================================================
+  MOSFET SPICE Level 1 Parameter Extractor  –  IRF740
+====================================================================
+
+  Reading 'final15_06.csv' …
+  V_GS values detected: ['4.0V', '5.0V', '6.0V', '7.0V', '8.0V', '9.0V']
+  Data summary:
+    V_GS=4.0 V :   42 pts  |  V_DS ∈ [0.00, 30.70] V  |  I_D ∈ [0.0000, 0.7500] A
+    V_GS=5.0 V :   42 pts  |  V_DS ∈ [0.00, 27.25] V  |  I_D ∈ [0.0500, 5.1000] A
+    V_GS=6.0 V :   42 pts  |  V_DS ∈ [0.00, 21.20] V  |  I_D ∈ [0.0500, 12.8500] A
+    V_GS=7.0 V :   42 pts  |  V_DS ∈ [-0.05, 15.25] V  |  I_D ∈ [0.0500, 20.4000] A
+    V_GS=8.0 V :   42 pts  |  V_DS ∈ [0.05, 14.90] V  |  I_D ∈ [0.0500, 20.9500] A
+    V_GS=9.0 V :   42 pts  |  V_DS ∈ [0.05, 14.75] V  |  I_D ∈ [0.0500, 21.0500] A
+
+─── Saturation-region linear fits ──────────────────────────────────
+  V_GS=4.0 V :  I₀=0.6600 A  |  λ=0.00312 V⁻¹  |  R²=0.4029  |  n=40
+  V_GS=5.0 V :  I₀=4.8288 A  |  λ=0.00218 V⁻¹  |  R²=0.4111  |  n=34
+  V_GS=6.0 V :  I₀=11.6430 A  |  λ=0.00595 V⁻¹  |  R²=0.4333  |  n=22
+  V_GS=7.0 V :  I₀=8.6351 A  |  λ=0.08976 V⁻¹  |  R²=0.9983  |  n=9
+  V_GS=8.0 V :  I₀=7.6852 A  |  λ=0.11623 V⁻¹  |  R²=0.9985  |  n=8
+  V_GS=9.0 V :  I₀=7.7855 A  |  λ=0.11589 V⁻¹  |  R²=0.9989  |  n=8
+
+════════════════════════════════════════════════════════════════════
+  ⚠  DATA QUALITY WARNINGS
+════════════════════════════════════════════════════════════════════
+  ⚠  Thermally distorted curves (λ >> median): V_GS = ['7.0V', '8.0V', '9.0V']
+  ⚠  These are excluded from VTO / K fitting — repeat those sweeps with short pulses (≤ 20 µs) to fix.
+
+════════════════════════════════════════════════════════════════════
+  EXTRACTED PARAMETERS
+════════════════════════════════════════════════════════════════════
+  VTO        =  3.3532      V   [multi-point √(I₀) vs V_GS regression  (R² = 0.9986,  n = 3 curves)]
+  KP_eff (β) =  3.379346 A/V²  (= 2K, for W=L=1 on the instance)
+  K  (= β/2) =  1.689673 A/V²
+  LAMBDA     =  0.003750 V⁻¹  (avg over V_GS = ['4.0V', '5.0V', '6.0V'])
+
+  Saturation intercepts I₀ per curve:
+    V_GS=4.0 V :  I₀ = 0.6600 A  |  λ = 0.00312 V⁻¹  |  R² = 0.4029  ✓ clean
+    V_GS=5.0 V :  I₀ = 4.8288 A  |  λ = 0.00218 V⁻¹  |  R² = 0.4111  ✓ clean
+    V_GS=6.0 V :  I₀ = 11.6430 A  |  λ = 0.00595 V⁻¹  |  R² = 0.4333  ✓ clean
+    V_GS=7.0 V :  I₀ = 8.6351 A  |  λ = 0.08976 V⁻¹  |  R² = 0.9983  ✗ distorted — excluded
+    V_GS=8.0 V :  I₀ = 7.6852 A  |  λ = 0.11623 V⁻¹  |  R² = 0.9985  ✗ distorted — excluded
+    V_GS=9.0 V :  I₀ = 7.7855 A  |  λ = 0.11589 V⁻¹  |  R² = 0.9989  ✗ distorted — excluded
+
+  RDS(on) ≈ 466.68 mΩ  (V_GS=9.0V, deep-linear region)
+════════════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════════════
+  SPICE LEVEL 1 MODEL CARD
+════════════════════════════════════════════════════════════════════
+  * Device  : IRF740  (N-channel enhancement MOSFET)
+  * Curves used for extraction: V_GS = ['4.0V', '5.0V', '6.0V']
+  * Excluded (self-heating)   : V_GS = ['7.0V', '8.0V', '9.0V']
+  *
+  * KP is EFFECTIVE = KP_intrinsic × (W/L).  Always use W=1 L=1 on each instance.
+  * Capacitances (CGSO, CGDO, CJ …) are NOT extracted here.
+
+  .model IRF740 NMOS (Level=1
+  +  VTO    = 3.3532      $ threshold voltage  [V]
+  +  KP     = 3.379346  $ eff. transconductance [A/V²]  (W=L=1)
+  +  LAMBDA = 0.003750  $ channel-length modulation  [V⁻¹]
+  +  RD     = 0.23334    $ ≈ RDS(on)/2  [Ω]
+  +  RS     = 0.23334    $ ≈ RDS(on)/2  [Ω]
+  +  )
+
+  * M1  Drain  Gate  Source  Bulk  IRF740  W=1  L=1
+════════════════════════════════════════════════════════════════════
+
+  Plot saved  →  IRF740_SPICE_extraction.png
+
+Process finished with exit code 0
